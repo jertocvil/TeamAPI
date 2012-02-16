@@ -32,7 +32,7 @@ public class TeamAPIPlayerListener extends PlayerListener {
     @Override
     public void onPlayerInteract(PlayerInteractEvent event) {
 
-        if (event.getClickedBlock().getTypeId() == 63 && Utils.signalOn) { //se√±al
+        if (event.getClickedBlock().getTypeId() == 63 && Utils.signalOn) { //señal
             signalInt(event);
         }
         if (event.getClickedBlock().getTypeId() == 57) { //diamante
@@ -51,7 +51,7 @@ public class TeamAPIPlayerListener extends PlayerListener {
     }
     
     private void armor(Team t){
-        t.setArmor(1);
+        //t.setArmor(1);
         t.sendMessage("hola");
         
     }
