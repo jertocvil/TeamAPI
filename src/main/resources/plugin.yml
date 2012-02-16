@@ -1,7 +1,7 @@
 name: TeamAPI
-main: es.jertocvil.teamapi.TeamAPI
+main: net.acampadas21.teamapi.TeamAPI
 version: 0.01a
-description: Creaci—n y gesti—n de equipos
+description: Team creation and management
 commands:
   team:
     description: In which team am I

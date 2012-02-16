@@ -1,4 +1,4 @@
-package es.jertocvil.teamapi;
+package net.acampadas21.teamapi;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

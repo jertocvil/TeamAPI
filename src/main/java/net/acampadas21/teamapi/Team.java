@@ -1,5 +1,5 @@
 
-package es.jertocvil.teamapi;
+package net.acampadas21.teamapi;
 
 import java.util.ArrayList;
 import org.bukkit.ChatColor;
@@ -7,7 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class Team implements TeamT {
+public class Team{
     private ArrayList<Player> players = new ArrayList<Player>();
     private String nombre;
     private Player leader;
@@ -17,7 +17,6 @@ public class Team implements TeamT {
         this.leader = null;
     }
 
-    @Override
     public boolean hasLeader(){
         if(leader != null){
             return true;
@@ -25,7 +24,6 @@ public class Team implements TeamT {
         return false;
     }
     
-    @Override
     public Player getLeader(){
         if(hasLeader()){
             return leader;
@@ -33,12 +31,10 @@ public class Team implements TeamT {
         return null;
 }
     
-    @Override
     public void setLeader(Player p){
         if(isInTeam(p)) leader = p;
     }
     
-    @Override
     public void add(Player p){
         if(Utils.inWhichTeam(p) == null){
             players.add(p);
@@ -48,13 +44,14 @@ public class Team implements TeamT {
             p.sendMessage(ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " already belongs to team " + ChatColor.GOLD + Utils.inWhichTeam(p).getName());
         }
     }
-    @Override
+
+
     public void quit(Player p){
         if(isInTeam(p))
         players.remove(p);
     }
-    
-    @Override
+
+
     public Player[] members(){
         Player[] membersArray = new Player[players.size()];
         for (int i = 0; i < membersArray.length; i++) {
@@ -72,18 +69,18 @@ public class Team implements TeamT {
     }
     
     
-    @Override
+
     public Boolean isInTeam(Player p) {
      
         return players.contains(p);
     }
 
-    @Override
+
     public String getName() {
         return nombre;
     }
     
-    @Override
+
     public void transport(Location l){
         for (Player p : players) {
             p.teleport(l);
@@ -103,4 +100,15 @@ public class Team implements TeamT {
     }
     }
     
-
+/*
+ *     void add(Player p); // Añade jugador p al equipo
+    void quit(Player p); // Borra al jugador p del equipo
+    Player[] members(); // Lista los jugadores de este equipo
+    Boolean isInTeam(Player p); // Dice si pertenece al equipo
+    String getName(); // Devuelve el nombre del equipo
+    void transport(Location l); //transporta todos los jugadores del equipo a l
+    boolean hasLeader(); // dice si el equipo tiene líder
+    void setLeader(Player p); //si el jugador p es del equipo, pasa a ser líder.
+    Player getLeader(); //devuelve el líder del equipo
+    
+    */

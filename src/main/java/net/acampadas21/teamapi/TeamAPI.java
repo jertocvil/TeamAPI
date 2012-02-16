@@ -1,9 +1,10 @@
-package es.jertocvil.teamapi;
-import lib.PatPeter.SQLibrary.SQLite;
-import java.util.ArrayList;
+package net.acampadas21.teamapi;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import lib.PatPeter.SQLibrary.SQLite;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;

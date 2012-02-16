@@ -1,8 +1,8 @@
-package es.jertocvil.teamapi;
+package net.acampadas21.teamapi;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+
 import org.bukkit.entity.Player;
 
 public class Utils {

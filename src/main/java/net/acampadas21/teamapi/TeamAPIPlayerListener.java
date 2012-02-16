@@ -1,4 +1,4 @@
-package es.jertocvil.teamapi;
+package net.acampadas21.teamapi;
 
 import org.bukkit.Bukkit;
 //import org.bukkit.ChatColor;
@@ -36,7 +36,7 @@ public class TeamAPIPlayerListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerInteract(PlayerInteractEvent event) {
 
-        if (event.getClickedBlock().getTypeId() == 63 && Utils.signalOn) { //se–al
+        if (event.getClickedBlock().getTypeId() == 63 && Utils.signalOn) { //seï¿½al
             signalInt(event);
         }
         if (event.getClickedBlock().getTypeId() == 57) { //diamante
