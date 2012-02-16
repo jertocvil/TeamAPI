@@ -1,9 +1,0 @@
-name: TeamAPI
-main: es.jertocvil.teamapi.TeamAPI
-version: 0.01a
-description: Creación y gestión de equipos
-commands:
-  team:
-    description: In which team am I
-  test:
-    description: test command
