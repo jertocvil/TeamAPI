@@ -1,0 +1,47 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>es.jertocvil</groupId>
+  <artifactId>teamapi</artifactId>
+  <version>dev-SNAPSHOT</version>
+  <name>TeamApi</name>
+      <repositories>
+        <repository>
+            <id>spout-repo</id>
+            <url>http://repo.getspout.org</url>
+            <releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+        	<id>acampadas-repo</id>
+        	<name>Repositorio Acampadas21</name>
+        	<url>http://acampadas21.net:8026/nexus-2.0/content/groups/public/</url>
+        	<releases>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>bukkit</artifactId>
+            <version>1.1-R4</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>lib.PatPeter</groupId>
+            <artifactId>SQLibrary</artifactId>
+            <version>dev-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+</project>
