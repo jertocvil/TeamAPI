@@ -1,13 +1,11 @@
 package es.jertocvil.teamapi;
-import lib.PatPeter.SQLibrary.*;
+import lib.PatPeter.SQLibrary.SQLite;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Event;
-import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class TeamAPI extends JavaPlugin {
@@ -29,8 +27,6 @@ public class TeamAPI extends JavaPlugin {
         FileConfiguration config = this.getConfig();
         Utils.teams = new HashMap<String, Team>();
         Utils.signalOn = false;
-        PluginManager pm = getServer().getPluginManager();
-        pm.registerEvent(Event.Type.PLAYER_INTERACT, this.playerListener, Event.Priority.Normal, this);
         myExecutor = new Executor(this);
         getCommand("team").setExecutor(myExecutor);
         getCommand("test").setExecutor(myExecutor);

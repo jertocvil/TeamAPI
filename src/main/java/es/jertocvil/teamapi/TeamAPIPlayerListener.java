@@ -1,19 +1,23 @@
 package es.jertocvil.teamapi;
 
-import org.bukkit.ChatColor;
+import org.bukkit.Bukkit;
+//import org.bukkit.ChatColor;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerChatEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
+//import org.bukkit.event.player.PlayerChatEvent;
+//import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 
-public class TeamAPIPlayerListener extends PlayerListener {
+public class TeamAPIPlayerListener implements Listener {
 
     public static TeamAPI plugin;
 
     public TeamAPIPlayerListener(TeamAPI instance) {
         plugin = instance;
+        Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
 //    @Override
@@ -29,7 +33,7 @@ public class TeamAPIPlayerListener extends PlayerListener {
 //        }
 //    }
     
-    @Override
+    @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerInteract(PlayerInteractEvent event) {
 
         if (event.getClickedBlock().getTypeId() == 63 && Utils.signalOn) { //se–al
