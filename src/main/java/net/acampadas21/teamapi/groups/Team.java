@@ -1,7 +1,10 @@
 
-package net.acampadas21.teamapi;
+package net.acampadas21.teamapi.groups;
 
 import java.util.ArrayList;
+
+import net.acampadas21.teamapi.Utils;
+
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;

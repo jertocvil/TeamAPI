@@ -15,5 +15,11 @@ public class GroupManager {
 			throw new Error("Can't connect to the database");
 		}
 	}
+	
+	public boolean isTeam(String name){
+		return db.checkTable(name);
+	}
+	
+	public 
 
 }

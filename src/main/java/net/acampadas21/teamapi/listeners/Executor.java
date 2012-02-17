@@ -1,4 +1,7 @@
-package net.acampadas21.teamapi;
+package net.acampadas21.teamapi.listeners;
+
+
+import net.acampadas21.teamapi.Commands;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -6,12 +9,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class Executor implements CommandExecutor {
-
-    private TeamAPI plugin;
-
-    public Executor(TeamAPI plugin) {
-        this.plugin = plugin;
-    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {

@@ -1,4 +1,8 @@
-package net.acampadas21.teamapi;
+package net.acampadas21.teamapi.listeners;
+
+import net.acampadas21.teamapi.TeamAPI;
+import net.acampadas21.teamapi.Utils;
+import net.acampadas21.teamapi.groups.Team;
 
 import org.bukkit.Bukkit;
 //import org.bukkit.ChatColor;

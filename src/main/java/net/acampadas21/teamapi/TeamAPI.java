@@ -5,6 +5,10 @@ import java.util.logging.Logger;
 
 import lib.PatPeter.SQLibrary.SQLite;
 
+import net.acampadas21.teamapi.groups.Team;
+import net.acampadas21.teamapi.listeners.Executor;
+import net.acampadas21.teamapi.listeners.TeamAPIPlayerListener;
+
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,10 +29,10 @@ public class TeamAPI extends JavaPlugin {
     @Override
     public void onEnable() {
     	
-        FileConfiguration config = this.getConfig();
+ //       FileConfiguration config = this.getConfig();
         Utils.teams = new HashMap<String, Team>();
         Utils.signalOn = false;
-        myExecutor = new Executor(this);
+        myExecutor = new Executor();
         getCommand("team").setExecutor(myExecutor);
         getCommand("test").setExecutor(myExecutor);
         TeamAPI.logger.log(Level.INFO, "TeamAPI v{0} has been enabled.", plugin.getDescription().getVersion());

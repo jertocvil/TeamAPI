@@ -3,22 +3,14 @@ package net.acampadas21.teamapi;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import net.acampadas21.teamapi.groups.Team;
+
 import org.bukkit.entity.Player;
 
 public class Utils {
 
     public static HashMap<String, Team> teams;
     public static boolean signalOn;
-
-    public static boolean isTeam(String input) {
-        boolean marca = false;
-        for (Team t : teams.values()) {
-            if (t.getName().equalsIgnoreCase(input)) {
-                marca = true;
-            }
-        }
-        return marca;
-    }
 
     public static boolean createTeam(String input) {
         if (!teams.containsKey(input)) {
