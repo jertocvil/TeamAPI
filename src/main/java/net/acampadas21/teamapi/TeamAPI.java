@@ -4,12 +4,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import lib.PatPeter.SQLibrary.SQLite;
-
 import net.acampadas21.teamapi.groups.Team;
 import net.acampadas21.teamapi.listeners.Executor;
 import net.acampadas21.teamapi.listeners.TeamAPIPlayerListener;
 
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -62,11 +60,11 @@ public class TeamAPI extends JavaPlugin {
         return Utils.createTeam(input);
     }
     
-    public static Team getTeamFromName(String name) {
+    public Team getTeamFromName(String name) {
         return Utils.getTeamFromName(name);
     }
 
-    public static String[] listTeams() {
+    public String[] listTeams() {
         return Utils.listTeams();
     }
 }

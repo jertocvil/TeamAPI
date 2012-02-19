@@ -10,7 +10,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class Team{
+public class Team {
     private ArrayList<Player> players = new ArrayList<Player>();
     private String nombre;
     private Player leader;
@@ -101,6 +101,21 @@ public class Team{
             p.sendMessage(message);
         }
     }
+
+	public Player[] getPlayers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void addPlayer(Player p) {
+		players.add(p);
+		
+	}
+
+	public void removePlayer(Player p) {
+		// TODO Auto-generated method stub
+		
+	}
     }
     
 /*

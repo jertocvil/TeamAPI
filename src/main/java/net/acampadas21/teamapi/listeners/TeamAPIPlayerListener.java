@@ -2,7 +2,7 @@ package net.acampadas21.teamapi.listeners;
 
 import net.acampadas21.teamapi.TeamAPI;
 import net.acampadas21.teamapi.Utils;
-import net.acampadas21.teamapi.groups.Team;
+import net.acampadas21.teamapi.groups.TempTeam;
 
 import org.bukkit.Bukkit;
 //import org.bukkit.ChatColor;
@@ -56,11 +56,5 @@ public class TeamAPIPlayerListener implements Listener {
         if (Utils.isTeam(s.getLine(0))) {
             Utils.teams.get(s.getLine(0)).add(p);
         }
-    }
-    
-    private void armor(Team t){
-        //t.setArmor(1);
-        t.sendMessage("hola");
-        
     }
 }
