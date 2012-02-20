@@ -20,18 +20,6 @@ public class TeamAPIPlayerListener implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
-//    @Override
-//    public void onPlayerChat(PlayerChatEvent chat){
-//        Player p = chat.getPlayer();
-//        String message = chat.getMessage();
-//        String message_lower = message.toLowerCase();
-//        ChatColor RED = ChatColor.RED;
-//        ChatColor WHITE = ChatColor.WHITE;
-//        if(message_lower.contains("hi") && message_lower.contains("server")){
-//            p.sendMessage(RED + "[SERVER]" + WHITE + " Hello " + p.getName());
-//            chat.setCancelled(true);
-//        }
-//    }
     
     @EventHandler(priority = EventPriority.NORMAL)
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -39,7 +27,6 @@ public class TeamAPIPlayerListener implements Listener {
         if (event.getClickedBlock().getTypeId() == 63 && Utils.signalOn) { //se�al
             signalInt(event);
         }
-      
     }
 
     private void signalInt(PlayerInteractEvent event) {

@@ -1,9 +1,7 @@
 package net.acampadas21.teamapi;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import lib.PatPeter.SQLibrary.SQLite;
 import net.acampadas21.teamapi.groups.Team;
 import net.acampadas21.teamapi.listeners.Executor;
 import net.acampadas21.teamapi.listeners.TeamAPIPlayerListener;
@@ -14,10 +12,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class TeamAPI extends JavaPlugin {
 
     public static TeamAPI plugin;
-    public static SQLite sq;
     public static final Logger logger = Logger.getLogger("Minecraft");
     public final TeamAPIPlayerListener playerListener = new TeamAPIPlayerListener(this);
     private Executor myExecutor;
+    public static boolean signalOn;
 
     @Override
     public void onDisable() {
@@ -26,10 +24,9 @@ public class TeamAPI extends JavaPlugin {
 
     @Override
     public void onEnable() {
-    	
+    	signalOn = false;
  //       FileConfiguration config = this.getConfig();
-        Utils.teams = new HashMap<String, Team>();
-        Utils.signalOn = false;
+    	TeamManager.initialize();
         myExecutor = new Executor();
         getCommand("team").setExecutor(myExecutor);
         getCommand("test").setExecutor(myExecutor);
@@ -37,34 +34,34 @@ public class TeamAPI extends JavaPlugin {
     }
 
     public int howManyTeams() {
-        return Utils.teams.size();
+        return TeamManager.teams.size();
     }
 
     public Player[] playersIn(Team t) {
-        return t.members();
+        return t.getPlayers();
     }
 
     public Player[] playersIn(String t) {
-        return Utils.getTeamFromName(t).members();
+        return TeamManager.getTeamFromName(t).getPlayers();
     }
 
     public Team inWhichTeam(Player p) {
-        return Utils.inWhichTeam(p);
+        return TeamManager.inWhichTeam(p);
     }
 
     public boolean isTeam(String input) {
-        return Utils.isTeam(input);
+        return TeamManager.isTeam(input);
     }
 
     public boolean createTeam(String input) {
-        return Utils.createTeam(input);
+        return TeamManager.createTeam(input);
     }
     
     public Team getTeamFromName(String name) {
-        return Utils.getTeamFromName(name);
+        return TeamManager.getTeamFromName(name);
     }
 
     public String[] listTeams() {
-        return Utils.listTeams();
+        return TeamManager.listTeams();
     }
 }

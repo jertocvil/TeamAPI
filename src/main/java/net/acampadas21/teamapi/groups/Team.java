@@ -11,15 +11,19 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class Team {
-    private ArrayList<Player> players = new ArrayList<Player>();
-    private String nombre;
+    private ArrayList<Player> players;
+	private String name;
     private Player leader;
     
-    public Team(String nombre){
-        this.nombre = nombre;
-        this.leader = null;
+    public Team(String name){
+        this(name, new ArrayList<Player>());
     }
-
+    
+    public Team(String name, ArrayList<Player> players){
+        this.name = name;
+        this.players = players;
+    }
+    
     /**
      * Checks if the team has a leader
      * @return True if the team has a leader
@@ -57,7 +61,7 @@ public class Team {
     public void add(Player p){
         if(Utils.inWhichTeam(p) == null){
             players.add(p);
-            p.sendMessage(ChatColor.GOLD + p.getName() + ChatColor.GREEN + " added to team " + ChatColor.GOLD + nombre);
+            p.sendMessage(ChatColor.GOLD + p.getName() + ChatColor.GREEN + " added to team " + ChatColor.GOLD + name);
         }
         else{
             p.sendMessage(ChatColor.GOLD + p.getName() + ChatColor.YELLOW + " already belongs to team " + ChatColor.GOLD + Utils.inWhichTeam(p).getName());
@@ -103,7 +107,7 @@ public class Team {
      * @return The name of the team
      */
     public String getName() {
-        return nombre;
+        return name;
     }
     
     /**

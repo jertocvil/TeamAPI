@@ -10,7 +10,7 @@ public class Commands {
     
     public static void createTeam(String name, Player p){
         if (name != null) {
-                    if(Utils.createTeam(name)){
+                    if(TeamManager.createTeam(name)){
                     p.sendMessage(ChatColor.GREEN + "Team " + ChatColor.GOLD + name + ChatColor.GREEN + " created.");
                     } else {
                         p.sendMessage(ChatColor.YELLOW + "Team " + ChatColor.GOLD + name + ChatColor.YELLOW + " already exists.");
@@ -22,8 +22,8 @@ public class Commands {
     
     public static void removeTeam(String name, Player p){
         if (name != null) {
-            if(Utils.isTeam(name)){
-                    Utils.teams.remove(name);
+            if(TeamManager.isTeam(name)){
+                    TeamManager.teams.remove(name);
                     p.sendMessage(ChatColor.RED + "Team " + ChatColor.GOLD + name + ChatColor.RED + " removed.");
             } else {
                 p.sendMessage(ChatColor.YELLOW + "Team " + ChatColor.GOLD + name + ChatColor.YELLOW + " doesn't exist.");
@@ -31,17 +31,17 @@ public class Commands {
                 }
     }
     public static void clearTeams(Player p){
-        Utils.teams.clear();
+        TeamManager.teams.clear();
         p.sendMessage(ChatColor.RED + "All teams cleared.");
     }
     
     public static void signConfig(String value, Player p){
         if(value != null){
                     if(value.equalsIgnoreCase("true")){
-                        Utils.signalOn = true;
+                        TeamManager.signalOn = true;
                         p.sendMessage(ChatColor.YELLOW + "Joining teams by signal click " + ChatColor.GREEN + "enabled.");
                     } else if(value.equalsIgnoreCase("false")){
-                        Utils.signalOn = false;
+                        TeamManager.signalOn = false;
                         p.sendMessage(ChatColor.YELLOW + "Joining teams by signal click " + ChatColor.RED + "disabled.");
                     } else sendUsage(p);
                 }
@@ -51,6 +51,6 @@ public class Commands {
     }
     
     public static void transport(String team, Player p){
-        Utils.getTeamFromName(team).transport(p.getLocation());
+        TeamManager.getTeamFromName(team).transport(p.getLocation());
     }
 }
