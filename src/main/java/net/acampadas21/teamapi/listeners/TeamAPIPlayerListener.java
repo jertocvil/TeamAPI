@@ -2,18 +2,14 @@ package net.acampadas21.teamapi.listeners;
 
 import net.acampadas21.teamapi.TeamAPI;
 import net.acampadas21.teamapi.Utils;
-import net.acampadas21.teamapi.groups.TempTeam;
 
 import org.bukkit.Bukkit;
-//import org.bukkit.ChatColor;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
-//import org.bukkit.event.player.PlayerChatEvent;
-//import org.bukkit.event.player.PlayerInteractEntityEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 public class TeamAPIPlayerListener implements Listener {
 
@@ -43,10 +39,7 @@ public class TeamAPIPlayerListener implements Listener {
         if (event.getClickedBlock().getTypeId() == 63 && Utils.signalOn) { //se�al
             signalInt(event);
         }
-        if (event.getClickedBlock().getTypeId() == 57) { //diamante
-            armor(Utils.inWhichTeam(event.getPlayer()));
-        }
-        
+      
     }
 
     private void signalInt(PlayerInteractEvent event) {

@@ -68,7 +68,7 @@ public class Team {
      * Removes a player from the team
      * @param p The player to remove from the team
      */
-    public void quit(Player p){
+    public void remove(Player p){
         if(isInTeam(p))
         players.remove(p);
     }
@@ -77,26 +77,16 @@ public class Team {
      * Player array of the team members
      * @return A player array containing the members of the team
      */
-    public Player[] members(){
+    public Player[] getPlayers(){
+    	/*
         Player[] membersArray = new Player[players.size()];
         for (int i = 0; i < membersArray.length; i++) {
             membersArray[i] = players.get(i);
         }
-        return membersArray;
+        */
+        return (Player[]) players.toArray();
     }
 
-    /**
-     * String array of the team members
-     * @return A string array containing the nickname of team's players
-     */
-    public String[] membersNames(){
-        String[] membersArray = new String[players.size()];
-        for (int i = 0; i < membersArray.length; i++) {
-            membersArray[i] = players.get(i).getName();
-        }
-        return membersArray;
-    }
-    
     
     /**
      * Function that checks if a certain player belongs to the team
@@ -146,19 +136,4 @@ public class Team {
             p.sendMessage(message);
         }
     }
-
-	public Player[] getPlayers() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void addPlayer(Player p) {
-		players.add(p);
-		
-	}
-
-	public void removePlayer(Player p) {
-		// TODO Auto-generated method stub
-		
-	}
 }
