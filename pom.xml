@@ -37,8 +37,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>lib.PatPeter</groupId>
-            <artifactId>SQLibrary</artifactId>
+            <groupId>couk.Adamki11s</groupId>
+            <artifactId>Sync</artifactId>
             <version>dev-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>
