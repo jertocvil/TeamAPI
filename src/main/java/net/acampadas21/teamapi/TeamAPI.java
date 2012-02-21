@@ -14,6 +14,7 @@ public class TeamAPI extends JavaPlugin {
     public static TeamAPI plugin;
     public static final Logger logger = Logger.getLogger("Minecraft");
     public final TeamAPIPlayerListener playerListener = new TeamAPIPlayerListener(this);
+    private static TeamManager tm;
     private Executor myExecutor;
     public static boolean signalOn;
 
@@ -26,7 +27,7 @@ public class TeamAPI extends JavaPlugin {
     public void onEnable() {
     	signalOn = false;
  //       FileConfiguration config = this.getConfig();
-    	TeamManager.initialize();
+    	tm = new TeamManager(this);
         myExecutor = new Executor();
         getCommand("team").setExecutor(myExecutor);
         getCommand("test").setExecutor(myExecutor);
@@ -34,7 +35,7 @@ public class TeamAPI extends JavaPlugin {
     }
 
     public int howManyTeams() {
-        return TeamManager.teams.size();
+        return tm.teams.size();
     }
 
     public Player[] playersIn(Team t) {
@@ -42,26 +43,26 @@ public class TeamAPI extends JavaPlugin {
     }
 
     public Player[] playersIn(String t) {
-        return TeamManager.getTeamFromName(t).getPlayers();
+        return tm.getTeamFromName(t).getPlayers();
     }
 
     public Team inWhichTeam(Player p) {
-        return TeamManager.inWhichTeam(p);
+        return tm.inWhichTeam(p);
     }
 
     public boolean isTeam(String input) {
-        return TeamManager.isTeam(input);
+        return tm.isTeam(input);
     }
 
     public boolean createTeam(String input) {
-        return TeamManager.createTeam(input);
+        return tm.newTeam(input);
     }
     
     public Team getTeamFromName(String name) {
-        return TeamManager.getTeamFromName(name);
+        return tm.getTeamFromName(name);
     }
 
     public String[] listTeams() {
-        return TeamManager.listTeams();
+        return tm.listTeams();
     }
 }
