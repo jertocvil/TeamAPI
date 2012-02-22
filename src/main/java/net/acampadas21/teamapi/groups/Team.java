@@ -19,9 +19,10 @@ public class Team {
         this(name, new ArrayList<Player>());
     }
     
-    public Team(String name, ArrayList<Player> players){
+    public Team(String name, ArrayList<Player> players, Player  leader){
         this.name = name;
         this.players = players;
+        this.leader = leader;
     }
     
     /**

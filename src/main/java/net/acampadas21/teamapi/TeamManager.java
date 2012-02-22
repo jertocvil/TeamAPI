@@ -2,11 +2,13 @@ package net.acampadas21.teamapi;
 
 import java.io.File;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import net.acampadas21.teamapi.groups.Team;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import couk.Adamki11s.SQL.SyncSQL;
@@ -49,19 +51,33 @@ public class TeamManager {
 	
 	protected void deleteTeam(Team t){
 		if(isTeam(t.getName())){
-			db.standardQuery("DELETE TABLE " + t.getName() + ";");
+			db.standardQuery("DROP TABLE " + t.getName() + ";");
 		}
 	
 	}
 	
 	protected Team getTeamByName(String name){
 		if(isTeam(name)){
-			return ;
+			ArrayList<Player> p = new ArrayList<Player>();
+			Player leader = null;
+				try {
+				    ResultSet rs = db.sqlQuery("SELECT * FROM " + name);
+				    while (rs.next()) {
+				        p.add(Bukkit.getServer().getPlayer(rs.getString(1)));
+				        if(rs.getInt(2) != 0) leader = Bukkit.getServer().getPlayer(rs.getString(1));
+				    }
+				    
+				} catch (SQLException e) {
+					// TODO logger
+				}
+				return new Team(name, p, leader);
+				
 		}
+		return null;
 	}
 	
 	protected Team getTeamByPlayer(Player p){
-		ResultSet rs = db.sqlQuery(query);
+		ResultSet rs = db.sqlQuery("");
 	}
 
 
