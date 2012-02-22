@@ -1,9 +1,6 @@
-
 package net.acampadas21.teamapi.groups;
 
 import java.util.ArrayList;
-
-import net.acampadas21.teamapi.Utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -16,10 +13,10 @@ public class Team {
     private Player leader;
     
     public Team(String name){
-        this(name, new ArrayList<Player>());
+        this(name, new ArrayList<Player>(), null);
     }
     
-    public Team(String name, ArrayList<Player> players, Player  leader){
+    public Team(String name, ArrayList<Player> players, Player leader){
         this.name = name;
         this.players = players;
         this.leader = leader;
@@ -60,7 +57,7 @@ public class Team {
      * @param p The player to add to the team
      */
     public void add(Player p){
-        if(Utils.inWhichTeam(p) == null){
+        if(fd == null){
             players.add(p);
             p.sendMessage(ChatColor.GOLD + p.getName() + ChatColor.GREEN + " added to team " + ChatColor.GOLD + name);
         }
