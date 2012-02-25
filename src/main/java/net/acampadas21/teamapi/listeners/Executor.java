@@ -1,7 +1,6 @@
 package net.acampadas21.teamapi.listeners;
 
-
-import net.acampadas21.teamapi.Commands;
+import net.acampadas21.teamapi.TeamManager;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,26 +9,47 @@ import org.bukkit.entity.Player;
 
 public class Executor implements CommandExecutor {
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args) {
-        Player p = (Player) sender;
-        if ("team".equalsIgnoreCase(commandLabel)) {
-            if (args[0].equalsIgnoreCase("new")) {
-                Commands.createTeam(args[1], p);
-            } else if (args[0].equalsIgnoreCase("remove")) {
-                Commands.removeTeam(args[1], p);
-            } else if(args[0].equalsIgnoreCase("flush")){
-                Commands.clearTeams(p);
-            } else if(args[0].equalsIgnoreCase("sign")){
-                Commands.signConfig(args[1], p);
-            } else if(args[0].equalsIgnoreCase("tp")){
-                Commands.transport(args[1], p);
-            }
-        }
+	private TeamManager tm;
 
+	public Executor(TeamManager tm) {
+		this.tm = tm;
+	}
 
-        return false;
-    }
-    
-    
+	@Override
+	public boolean onCommand(CommandSender sender, Command cmd,
+			String commandLabel, String[] args) {
+		Player p = (Player) sender;
+		if ("team".equalsIgnoreCase(commandLabel)) {
+			if (args[0].equalsIgnoreCase("new")) {
+				// Commands.createTeam(args[1], p);
+				if (args[1] != null) {
+					tm.newTeam(args[1]);
+					p.sendMessage("Team created");
+				}
+			} else if (args[0].equalsIgnoreCase("remove")) {
+				if (args[1] != null) {
+					if (tm.isTeam(args[1])) {
+						tm.deleteTeam(tm.getTeamByName(args[1]));
+						p.sendMessage("Team removed");
+					}
+				}
+			} else if (args[0].equalsIgnoreCase("clear")) {
+				tm.clearTeams();
+				p.sendMessage("All teams deleted");
+				/*
+				 * } else if(args[0].equalsIgnoreCase("sign")){ if(args[1] !=
+				 * null){ tm.newTeam(args[1]); p.sendMessage("Team created"); }
+				 */
+			} else if (args[0].equalsIgnoreCase("tp")) {
+				if (args[1] != null) {
+					if (tm.isTeam(args[1])) {
+						tm.getTeamByName(args[1]).transport(p.getLocation());
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+
 }

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+import net.acampadas21.teamapi.groups.DBTeam;
 import net.acampadas21.teamapi.groups.Team;
 
 import org.bukkit.Bukkit;
@@ -21,25 +22,30 @@ public class TeamManager {
 	
 	private static SyncSQL db;
 	private static TeamAPI plugin;
+	private static File f;
 
 	public TeamManager(TeamAPI instance) {
 		plugin = instance;
+		dbInit();
+	}
+
+	private void dbInit(){
 		try {
-			db = new SyncSQL(new File(plugin.getDataFolder() + "database.db"));
+			f = new File(plugin.getDataFolder() + "database.db");
+			db = new SyncSQL(f);
 			db.initialise();
 			db.closeConnection();
 		} catch (Exception e) {
 			throw new Error("Can't connect to the database");
 		}
 	}
-
 	
 	/**
 	 * Checks if exists any team with that name. 
 	 * @param name The name of the team that is going to be checked.
 	 * @return True if exists a team with that name
 	 */
-	protected boolean isTeam(String name) {
+	public boolean isTeam(String name) {
 		db.refreshConnection();
 		boolean b = db.doesTableExist(name);
 		db.closeConnection();
@@ -51,7 +57,7 @@ public class TeamManager {
 	 * @param name The name of the team that is going to be checked.
 	 * @return True if exists a team with that name
 	 */
-	protected boolean newTeam(String name) {
+	public boolean newTeam(String name) {
 		if (!isTeam(name)) {
 			db.refreshConnection();
 			db.standardQuery("CREATE TABLE " + name + "(player VARCHAR(20), leader TINYINT);");
@@ -66,7 +72,7 @@ public class TeamManager {
 	 * @param p The player we are adding
 	 * @param t The team where the player is going to be added.
 	 */
-	protected void joinTeam(Player p, Team t){
+	public void joinTeam(Player p, Team t){
 		db.refreshConnection();
 			db.standardQuery("INSERT INTO " + t.getName() + " VALUES("+ t.getName() +", 0);");
 			db.closeConnection();
@@ -76,7 +82,7 @@ public class TeamManager {
 	 * Removes a team
 	 * @param t The team that is going to be removed.
 	 */
-	protected void deleteTeam(Team t){
+	public void deleteTeam(Team t){
 		if(isTeam(t.getName())){
 			db.refreshConnection();
 			db.standardQuery("DROP TABLE " + t.getName() + ";");
@@ -90,7 +96,7 @@ public class TeamManager {
 	 * @param name The name of the team
 	 * @return Team with that name. Returns null if there isn't a team with that name.
 	 */
-	protected Team getTeamByName(String name){
+	public Team getTeamByName(String name){
 		if(isTeam(name)){
 			ArrayList<Player> p = new ArrayList<Player>();
 			Player leader = null;
@@ -107,7 +113,7 @@ public class TeamManager {
 				} catch (SQLException e) {
 					TeamAPI.logger.log(Level.SEVERE, "Can't connect to database");
 				}
-				return new Team(name, p, leader);
+				return new DBTeam(name, p, leader, this);
 				
 		}
 		return null;
@@ -118,7 +124,7 @@ public class TeamManager {
 	 * @param p The player we are checking.
 	 * @return The team where the player belongs. Returns null if it doesn't belong to any team.
 	 */
-	protected Team getTeamByPlayer(Player p){
+	public Team getTeamByPlayer(Player p){
 		Team[] teams = listTeams();
 		if(teams == null) return null;
 		for(Team t : teams){
@@ -132,7 +138,7 @@ public class TeamManager {
 	 * Gets all the teams stored in the database.
 	 * @return Array that contains all the teams.
 	 */
-    protected Team[] listTeams() {
+    public Team[] listTeams() {
 		ArrayList<Team> t = new ArrayList<Team>();
 		try {
 			db.refreshConnection();
@@ -147,6 +153,13 @@ public class TeamManager {
 			e.printStackTrace();
 		}
 		return null;
+    }
+    
+    
+    public void clearTeams(){
+    		f.delete();
+    		dbInit();
+    	
     }
 	
 	

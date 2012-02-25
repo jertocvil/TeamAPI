@@ -28,7 +28,7 @@ public class TeamAPI extends JavaPlugin {
     	signalOn = false;
  //       FileConfiguration config = this.getConfig();
     	tm = new TeamManager(this);
-        myExecutor = new Executor();
+        myExecutor = new Executor(tm);
         getCommand("team").setExecutor(myExecutor);
         getCommand("test").setExecutor(myExecutor);
         TeamAPI.logger.log(Level.INFO, "TeamAPI v{0} has been enabled.", plugin.getDescription().getVersion());
